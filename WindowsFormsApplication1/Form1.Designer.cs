@@ -72,8 +72,8 @@
             this.tSBtnUnderline = new System.Windows.Forms.ToolStripButton();
             this.tSBtnTextColor = new System.Windows.Forms.ToolStripButton();
             this.tSBtnBackgroundColor = new System.Windows.Forms.ToolStripButton();
-            this.tSBtnNoteColor = new System.Windows.Forms.ToolStripButton();
             this.rTBMain = new System.Windows.Forms.RichTextBox();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
@@ -390,11 +390,10 @@
             this.tSBtnItalic,
             this.tSBtnUnderline,
             this.tSBtnTextColor,
-            this.tSBtnBackgroundColor,
-            this.tSBtnNoteColor});
+            this.tSBtnBackgroundColor});
             this.toolStrip2.Location = new System.Drawing.Point(241, 24);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(356, 27);
+            this.toolStrip2.Size = new System.Drawing.Size(363, 27);
             this.toolStrip2.TabIndex = 2;
             this.toolStrip2.Text = "toolStrip2";
             // 
@@ -454,6 +453,7 @@
             this.tSBtnTextColor.Name = "tSBtnTextColor";
             this.tSBtnTextColor.Size = new System.Drawing.Size(24, 24);
             this.tSBtnTextColor.Text = "Text Color";
+            this.tSBtnTextColor.Click += new System.EventHandler(this.tSBtnTextColor_Click);
             // 
             // tSBtnBackgroundColor
             // 
@@ -463,15 +463,7 @@
             this.tSBtnBackgroundColor.Name = "tSBtnBackgroundColor";
             this.tSBtnBackgroundColor.Size = new System.Drawing.Size(24, 24);
             this.tSBtnBackgroundColor.Text = "Background Color";
-            // 
-            // tSBtnNoteColor
-            // 
-            this.tSBtnNoteColor.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tSBtnNoteColor.Image = ((System.Drawing.Image)(resources.GetObject("tSBtnNoteColor.Image")));
-            this.tSBtnNoteColor.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tSBtnNoteColor.Name = "tSBtnNoteColor";
-            this.tSBtnNoteColor.Size = new System.Drawing.Size(24, 24);
-            this.tSBtnNoteColor.Text = "Note Color";
+            this.tSBtnBackgroundColor.Click += new System.EventHandler(this.tSBtnBackgroundColor_Click);
             // 
             // rTBMain
             // 
@@ -487,6 +479,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(777, 402);
             this.Controls.Add(this.rTBMain);
             this.Controls.Add(this.toolStrip2);
@@ -525,7 +518,6 @@
         private System.Windows.Forms.ToolStripButton tSBtnPaste;
         private System.Windows.Forms.ToolStripButton tSBtnTextColor;
         private System.Windows.Forms.ToolStripButton tSBtnBackgroundColor;
-        private System.Windows.Forms.ToolStripButton tSBtnNoteColor;
         private System.Windows.Forms.RichTextBox rTBMain;
         private System.Windows.Forms.ToolStripButton tSBtnCopy;
         private System.Windows.Forms.ToolStripButton tSBtnBold;
@@ -555,6 +547,7 @@
         private System.Windows.Forms.ToolStripMenuItem fileToolbarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem formatToolbarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ColorDialog colorDialog1;
     }
 }
 
