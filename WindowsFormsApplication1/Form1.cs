@@ -75,36 +75,41 @@ namespace WindowsFormsApplication1
             }
         }
 
-        private void load()
-        {
-            FontStyle stype = FontStyle.Regular;
-            if (tSBtnBold.Checked == true)
-                stype = FontStyle.Bold;
-            if (tSBtnItalic.Checked == true)
-                stype = FontStyle.Italic;
-            if (tSBtnUnderline.Checked == true)
-                stype = FontStyle.Underline;
-            FontFamily fa = new FontFamily(tSCBFont.Text);
-            Font f = new System.Drawing.Font(fa, float.Parse(tSCBSize.Text), stype);
-            if (rTBMain.SelectedText.Length > 0)
-                rTBMain.SelectionFont = f; 
-
-        }
         private void tSCBFont_SelectedIndexChanged(object sender, EventArgs e)
         {
-            load();
+            FontFamily fa = new FontFamily(tSCBFont.Text);
+            Font f = new System.Drawing.Font(fa, float.Parse(tSCBSize.Text));
+            if (rTBMain.SelectedText.Length > 0)
+                rTBMain.SelectionFont = f;
         }
 
         private void tSCBSize_SelectedIndexChanged(object sender, EventArgs e)
         {
-            load();
+            FontFamily fa = new FontFamily(tSCBFont.Text);
+            Font f = new System.Drawing.Font(fa, float.Parse(tSCBSize.Text));
+            if (rTBMain.SelectedText.Length > 0)
+                rTBMain.SelectionFont = f;
         }
 
         private void tSBtnBold_Click(object sender, EventArgs e)
         {
+
             if (rTBMain.SelectedText.Length > 0)
             {
-                load();
+                if (this.tSBtnBold.Checked == true)
+                {
+                    FontStyle style = rTBMain.SelectionFont.Style;
+                    style = style | FontStyle.Bold;
+                    Font f = new System.Drawing.Font(new FontFamily(tSCBFont.Text), float.Parse(tSCBSize.Text), style);
+                    rTBMain.SelectionFont = f;
+                }
+                else
+                {
+                    FontStyle style = rTBMain.SelectionFont.Style;
+                    style = style ^ FontStyle.Bold;
+                    Font f = new System.Drawing.Font(new FontFamily(tSCBFont.Text), float.Parse(tSCBSize.Text), style);
+                    rTBMain.SelectionFont = f;
+                }
             }
         }
 
@@ -112,7 +117,20 @@ namespace WindowsFormsApplication1
         {
             if (rTBMain.SelectedText.Length > 0)
             {
-                load();
+                if (this.tSBtnItalic.Checked == true)
+                {
+                    FontStyle style = rTBMain.SelectionFont.Style;
+                    style = style | FontStyle.Italic;
+                    Font f = new System.Drawing.Font(new FontFamily(tSCBFont.Text), float.Parse(tSCBSize.Text), style);
+                    rTBMain.SelectionFont = f;
+                }
+                else
+                {
+                    FontStyle style = rTBMain.SelectionFont.Style;
+                    style = style ^ FontStyle.Italic;
+                    Font f = new System.Drawing.Font(new FontFamily(tSCBFont.Text), float.Parse(tSCBSize.Text), style);
+                    rTBMain.SelectionFont = f;
+                }
             }
         }
 
@@ -120,7 +138,20 @@ namespace WindowsFormsApplication1
         {
             if (rTBMain.SelectedText.Length > 0)
             {
-                load();
+                if (this.tSBtnUnderline.Checked == true)
+                {
+                    FontStyle style = rTBMain.SelectionFont.Style;
+                    style = style | FontStyle.Underline;
+                    Font f = new System.Drawing.Font(new FontFamily(tSCBFont.Text), float.Parse(tSCBSize.Text), style);
+                    rTBMain.SelectionFont = f;
+                }
+                else
+                {
+                    FontStyle style = rTBMain.SelectionFont.Style;
+                    style = style ^ FontStyle.Underline;
+                    Font f = new System.Drawing.Font(new FontFamily(tSCBFont.Text), float.Parse(tSCBSize.Text), style);
+                    rTBMain.SelectionFont = f;
+                }
             }
         }
     }
