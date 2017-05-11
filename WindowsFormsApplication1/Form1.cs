@@ -13,6 +13,8 @@ namespace WindowsFormsApplication1
 {
     public partial class FrmMain : Form
     {
+        FontStyle style = FontStyle.Regular;
+        Font font;
         public FrmMain()
         {
             InitializeComponent();
@@ -56,61 +58,25 @@ namespace WindowsFormsApplication1
         private void tSBtnBold_Click(object sender, EventArgs e)
         {
 
-   
-                if (this.tSBtnBold.Checked == true)
-                {
-                    FontStyle style = rTBMain.SelectionFont.Style;
-                    style = style | FontStyle.Bold;
-                    Font f = new System.Drawing.Font(new FontFamily(tSCBFont.Text), float.Parse(tSCBSize.Text), style);
-                    rTBMain.SelectionFont = f;
-                }
-                else
-                {
-                    FontStyle style = rTBMain.SelectionFont.Style;
                     style = style ^ FontStyle.Bold;
-                    Font f = new System.Drawing.Font(new FontFamily(tSCBFont.Text), float.Parse(tSCBSize.Text), style);
-                    rTBMain.SelectionFont = f;
-                }
-           
+                    font = new System.Drawing.Font(new FontFamily(tSCBFont.Text), float.Parse(tSCBSize.Text), style);
+                    rTBMain.SelectionFont = font;
         }
 
         private void tSBtnItalic_Click(object sender, EventArgs e)
         {
-                if (this.tSBtnItalic.Checked == true)
-                {
-                    FontStyle style = rTBMain.SelectionFont.Style;
-                    style = style | FontStyle.Italic;
-                    Font f = new System.Drawing.Font(new FontFamily(tSCBFont.Text), float.Parse(tSCBSize.Text), style);
-                    rTBMain.SelectionFont = f;
-                }
-                else
-                {
-                    FontStyle style = rTBMain.SelectionFont.Style;
-                    style = style ^ FontStyle.Italic;
-                    Font f = new System.Drawing.Font(new FontFamily(tSCBFont.Text), float.Parse(tSCBSize.Text), style);
-                    rTBMain.SelectionFont = f;
-                }
-            
+
+            style = style ^ FontStyle.Italic;
+            font = new System.Drawing.Font(new FontFamily(tSCBFont.Text), float.Parse(tSCBSize.Text), style);
+            rTBMain.SelectionFont = font;
+
         }
 
         private void tSBtnUnderline_Click(object sender, EventArgs e)
         {
-           
-                if (this.tSBtnUnderline.Checked == true)
-                {
-                    FontStyle style = rTBMain.SelectionFont.Style;
-                    style = style | FontStyle.Underline;
-                    Font f = new System.Drawing.Font(new FontFamily(tSCBFont.Text), float.Parse(tSCBSize.Text), style);
-                    rTBMain.SelectionFont = f;
-                }
-                else
-                {
-                    FontStyle style = rTBMain.SelectionFont.Style;
-                    style = style ^ FontStyle.Underline;
-                    Font f = new System.Drawing.Font(new FontFamily(tSCBFont.Text), float.Parse(tSCBSize.Text), style);
-                    rTBMain.SelectionFont = f;
-                }
-            
+            style = style ^ FontStyle.Underline;
+            font = new System.Drawing.Font(new FontFamily(tSCBFont.Text), float.Parse(tSCBSize.Text), style);
+            rTBMain.SelectionFont = font;
         }
 
         private void tSBtnTextColor_Click(object sender, EventArgs e)
