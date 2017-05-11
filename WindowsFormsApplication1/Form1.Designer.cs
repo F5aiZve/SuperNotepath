@@ -74,6 +74,7 @@
             this.tSBtnBackgroundColor = new System.Windows.Forms.ToolStripButton();
             this.rTBMain = new System.Windows.Forms.RichTextBox();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.fDFont = new System.Windows.Forms.FontDialog();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
@@ -113,7 +114,7 @@
             this.newToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.newToolStripMenuItem.Text = "&New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
@@ -123,14 +124,14 @@
             this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openToolStripMenuItem.Text = "&Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // toolStripSeparator
             // 
             this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(143, 6);
+            this.toolStripSeparator.Size = new System.Drawing.Size(149, 6);
             // 
             // saveToolStripMenuItem
             // 
@@ -138,26 +139,28 @@
             this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveToolStripMenuItem.Text = "&Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveAsToolStripMenuItem.Text = "Save &As";
+            this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(143, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem
             // 
@@ -245,14 +248,15 @@
             // wordWrapToolStripMenuItem
             // 
             this.wordWrapToolStripMenuItem.Name = "wordWrapToolStripMenuItem";
-            this.wordWrapToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.wordWrapToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.wordWrapToolStripMenuItem.Text = "Word Wrap";
             // 
             // fontToolStripMenuItem
             // 
             this.fontToolStripMenuItem.Name = "fontToolStripMenuItem";
-            this.fontToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
-            this.fontToolStripMenuItem.Text = "Font";
+            this.fontToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.fontToolStripMenuItem.Text = "Fonts...";
+            this.fontToolStripMenuItem.Click += new System.EventHandler(this.fontToolStripMenuItem_Click);
             // 
             // viewToolStripMenuItem
             // 
@@ -338,6 +342,7 @@
             this.tSBtnCut.Name = "tSBtnCut";
             this.tSBtnCut.Size = new System.Drawing.Size(24, 24);
             this.tSBtnCut.Text = "Cut";
+            this.tSBtnCut.Click += new System.EventHandler(this.tSBtnCut_Click);
             // 
             // tSBtnCopy
             // 
@@ -392,7 +397,7 @@
             // toolStrip2
             // 
             this.toolStrip2.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStrip2.ImageScalingSize = new System.Drawing.Size(15, 15);
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tSCBFont,
             this.tSCBSize,
@@ -403,21 +408,21 @@
             this.tSBtnBackgroundColor});
             this.toolStrip2.Location = new System.Drawing.Point(241, 24);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(332, 27);
+            this.toolStrip2.Size = new System.Drawing.Size(358, 25);
             this.toolStrip2.TabIndex = 2;
             this.toolStrip2.Text = "toolStrip2";
             // 
             // tSCBFont
             // 
             this.tSCBFont.Name = "tSCBFont";
-            this.tSCBFont.Size = new System.Drawing.Size(121, 27);
+            this.tSCBFont.Size = new System.Drawing.Size(121, 25);
             this.tSCBFont.Text = "Times New Roman";
             this.tSCBFont.SelectedIndexChanged += new System.EventHandler(this.tSCBFont_SelectedIndexChanged);
             // 
             // tSCBSize
             // 
             this.tSCBSize.Name = "tSCBSize";
-            this.tSCBSize.Size = new System.Drawing.Size(75, 27);
+            this.tSCBSize.Size = new System.Drawing.Size(75, 25);
             this.tSCBSize.Text = "12";
             this.tSCBSize.SelectedIndexChanged += new System.EventHandler(this.tSCBSize_SelectedIndexChanged);
             this.tSCBSize.Click += new System.EventHandler(this.tSCBSize_Click);
@@ -429,7 +434,7 @@
             this.tSBtnBold.Image = ((System.Drawing.Image)(resources.GetObject("tSBtnBold.Image")));
             this.tSBtnBold.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tSBtnBold.Name = "tSBtnBold";
-            this.tSBtnBold.Size = new System.Drawing.Size(24, 24);
+            this.tSBtnBold.Size = new System.Drawing.Size(23, 22);
             this.tSBtnBold.Text = "Bold";
             this.tSBtnBold.Click += new System.EventHandler(this.tSBtnBold_Click);
             // 
@@ -440,7 +445,7 @@
             this.tSBtnItalic.Image = ((System.Drawing.Image)(resources.GetObject("tSBtnItalic.Image")));
             this.tSBtnItalic.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tSBtnItalic.Name = "tSBtnItalic";
-            this.tSBtnItalic.Size = new System.Drawing.Size(24, 24);
+            this.tSBtnItalic.Size = new System.Drawing.Size(23, 22);
             this.tSBtnItalic.Text = "Italic";
             this.tSBtnItalic.Click += new System.EventHandler(this.tSBtnItalic_Click);
             // 
@@ -451,7 +456,7 @@
             this.tSBtnUnderline.Image = ((System.Drawing.Image)(resources.GetObject("tSBtnUnderline.Image")));
             this.tSBtnUnderline.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tSBtnUnderline.Name = "tSBtnUnderline";
-            this.tSBtnUnderline.Size = new System.Drawing.Size(24, 24);
+            this.tSBtnUnderline.Size = new System.Drawing.Size(23, 22);
             this.tSBtnUnderline.Text = "Underline";
             this.tSBtnUnderline.Click += new System.EventHandler(this.tSBtnUnderline_Click);
             // 
@@ -461,7 +466,7 @@
             this.tSBtnTextColor.Image = ((System.Drawing.Image)(resources.GetObject("tSBtnTextColor.Image")));
             this.tSBtnTextColor.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tSBtnTextColor.Name = "tSBtnTextColor";
-            this.tSBtnTextColor.Size = new System.Drawing.Size(24, 24);
+            this.tSBtnTextColor.Size = new System.Drawing.Size(23, 22);
             this.tSBtnTextColor.Text = "Text Color";
             this.tSBtnTextColor.Click += new System.EventHandler(this.tSBtnTextColor_Click);
             // 
@@ -471,14 +476,14 @@
             this.tSBtnBackgroundColor.Image = ((System.Drawing.Image)(resources.GetObject("tSBtnBackgroundColor.Image")));
             this.tSBtnBackgroundColor.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tSBtnBackgroundColor.Name = "tSBtnBackgroundColor";
-            this.tSBtnBackgroundColor.Size = new System.Drawing.Size(24, 24);
+            this.tSBtnBackgroundColor.Size = new System.Drawing.Size(23, 22);
             this.tSBtnBackgroundColor.Text = "Background Color";
             this.tSBtnBackgroundColor.Click += new System.EventHandler(this.tSBtnBackgroundColor_Click);
             // 
             // rTBMain
             // 
             this.rTBMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rTBMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rTBMain.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rTBMain.Location = new System.Drawing.Point(0, 51);
             this.rTBMain.Name = "rTBMain";
             this.rTBMain.Size = new System.Drawing.Size(777, 351);
@@ -558,6 +563,7 @@
         private System.Windows.Forms.ToolStripMenuItem formatToolbarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.FontDialog fDFont;
     }
 }
 
