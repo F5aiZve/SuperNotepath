@@ -154,5 +154,22 @@ namespace WindowsFormsApplication1
                 }
             }
         }
+
+        private void tSBtnTextColor_Click(object sender, EventArgs e)
+        {
+            if (this.colorDialog1.ShowDialog() == DialogResult.OK)
+            {
+                rTBMain.SelectionColor = colorDialog1.Color;
+            }
+
+        }
+
+        private void tSBtnBackgroundColor_Click(object sender, EventArgs e)
+        {
+            if (this.colorDialog1.ShowDialog() == DialogResult.OK)
+            {
+                rTBMain.BackColor = colorDialog1.Color;
+            }
+        }
     }
 }
