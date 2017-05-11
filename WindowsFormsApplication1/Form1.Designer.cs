@@ -115,6 +115,7 @@
             this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
             this.newToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.newToolStripMenuItem.Text = "&New";
+            this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
@@ -124,6 +125,7 @@
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
             this.openToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.openToolStripMenuItem.Text = "&Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // toolStripSeparator
             // 
@@ -138,6 +140,7 @@
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.saveToolStripMenuItem.Text = "&Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
@@ -177,6 +180,7 @@
             this.undoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
             this.undoToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.undoToolStripMenuItem.Text = "&Undo";
+            this.undoToolStripMenuItem.Click += new System.EventHandler(this.undoToolStripMenuItem_Click);
             // 
             // redoToolStripMenuItem
             // 
@@ -184,6 +188,7 @@
             this.redoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
             this.redoToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.redoToolStripMenuItem.Text = "&Redo";
+            this.redoToolStripMenuItem.Click += new System.EventHandler(this.redoToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
@@ -342,6 +347,7 @@
             this.tSBtnCopy.Name = "tSBtnCopy";
             this.tSBtnCopy.Size = new System.Drawing.Size(24, 24);
             this.tSBtnCopy.Text = "Copy";
+            this.tSBtnCopy.Click += new System.EventHandler(this.tSBtnCopy_Click);
             // 
             // tSBtnPaste
             // 
@@ -351,6 +357,7 @@
             this.tSBtnPaste.Name = "tSBtnPaste";
             this.tSBtnPaste.Size = new System.Drawing.Size(24, 24);
             this.tSBtnPaste.Text = "Paste";
+            this.tSBtnPaste.Click += new System.EventHandler(this.tSBtnPaste_Click);
             // 
             // tSBtnUndo
             // 
@@ -360,6 +367,7 @@
             this.tSBtnUndo.Name = "tSBtnUndo";
             this.tSBtnUndo.Size = new System.Drawing.Size(24, 24);
             this.tSBtnUndo.Text = "Undo";
+            this.tSBtnUndo.Click += new System.EventHandler(this.tSBtnUndo_Click);
             // 
             // tSBtnRedo
             // 
@@ -369,6 +377,7 @@
             this.tSBtnRedo.Name = "tSBtnRedo";
             this.tSBtnRedo.Size = new System.Drawing.Size(24, 24);
             this.tSBtnRedo.Text = "ReDo";
+            this.tSBtnRedo.Click += new System.EventHandler(this.tSBtnRedo_Click);
             // 
             // tSBtnPinNote
             // 
@@ -378,6 +387,7 @@
             this.tSBtnPinNote.Name = "tSBtnPinNote";
             this.tSBtnPinNote.Size = new System.Drawing.Size(24, 24);
             this.tSBtnPinNote.Text = "Pin Note";
+            this.tSBtnPinNote.Click += new System.EventHandler(this.tSBtnPinNote_Click);
             // 
             // toolStrip2
             // 
@@ -393,7 +403,7 @@
             this.tSBtnBackgroundColor});
             this.toolStrip2.Location = new System.Drawing.Point(241, 24);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(363, 27);
+            this.toolStrip2.Size = new System.Drawing.Size(332, 27);
             this.toolStrip2.TabIndex = 2;
             this.toolStrip2.Text = "toolStrip2";
             // 
