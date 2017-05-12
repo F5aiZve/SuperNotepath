@@ -56,8 +56,7 @@ namespace WindowsFormsApplication1
         private void tSBtnBold_Click(object sender, EventArgs e)
         {
 
-            if (rTBMain.SelectedText.Length > 0)
-            {
+   
                 if (this.tSBtnBold.Checked == true)
                 {
                     FontStyle style = rTBMain.SelectionFont.Style;
@@ -72,13 +71,11 @@ namespace WindowsFormsApplication1
                     Font f = new System.Drawing.Font(new FontFamily(tSCBFont.Text), float.Parse(tSCBSize.Text), style);
                     rTBMain.SelectionFont = f;
                 }
-            }
+           
         }
 
         private void tSBtnItalic_Click(object sender, EventArgs e)
         {
-            if (rTBMain.SelectedText.Length > 0)
-            {
                 if (this.tSBtnItalic.Checked == true)
                 {
                     FontStyle style = rTBMain.SelectionFont.Style;
@@ -93,13 +90,12 @@ namespace WindowsFormsApplication1
                     Font f = new System.Drawing.Font(new FontFamily(tSCBFont.Text), float.Parse(tSCBSize.Text), style);
                     rTBMain.SelectionFont = f;
                 }
-            }
+            
         }
 
         private void tSBtnUnderline_Click(object sender, EventArgs e)
         {
-            if (rTBMain.SelectedText.Length > 0)
-            {
+           
                 if (this.tSBtnUnderline.Checked == true)
                 {
                     FontStyle style = rTBMain.SelectionFont.Style;
@@ -114,7 +110,7 @@ namespace WindowsFormsApplication1
                     Font f = new System.Drawing.Font(new FontFamily(tSCBFont.Text), float.Parse(tSCBSize.Text), style);
                     rTBMain.SelectionFont = f;
                 }
-            }
+            
         }
 
         private void tSBtnTextColor_Click(object sender, EventArgs e)
@@ -169,6 +165,12 @@ namespace WindowsFormsApplication1
             if (da == DialogResult.No)
             {
                 rTBMain.Clear();
+                tSCBFont.Font = DefaultFont;
+                tSCBSize.Font = DefaultFont;
+                tSBtnBold.Checked = false;
+                tSBtnItalic.Checked = false;
+                tSBtnUnderline.Checked = false;
+                rTBMain.BackColor = Color.White;
             }
         }
         private void tSBtnNew_Click(object sender, EventArgs e)
@@ -198,13 +200,7 @@ namespace WindowsFormsApplication1
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SaveFileDialog Save = new SaveFileDialog();
-            Save.RestoreDirectory = true;
-            Save.Filter = ".txt| *.txt| .doc| *.doc";
-            if (Save.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                rTBMain.SaveFile(Save.FileName);
-            }
+           
         }
 
         private void tSBtnCopy_Click(object sender, EventArgs e)
@@ -220,6 +216,36 @@ namespace WindowsFormsApplication1
         private void tSBtnPinNote_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void tSBtnCut_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog Save = new SaveFileDialog();
+            Save.RestoreDirectory = true;
+            Save.Filter = ".txt| *.txt| .doc| *.doc";
+            if (Save.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                rTBMain.SaveFile(Save.FileName);
+            }
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void fontToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fDFont.Font = rTBMain.Font;
+            if (fDFont.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                rTBMain.Font = fDFont.Font;
+            }
         }
     }
 }
