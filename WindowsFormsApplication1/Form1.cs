@@ -13,6 +13,7 @@ namespace WindowsFormsApplication1
 {
     public partial class FrmMain : Form
     {
+        string fileName = "NoName";
         FontStyle style = FontStyle.Regular;
         Font font;
         public FrmMain()
@@ -27,6 +28,7 @@ namespace WindowsFormsApplication1
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
+            this.Text = "Super Notepad - " + fileName;
             for (int i = 1; i <= 120; i++)
             {
                 tSCBSize.Items.Add(i);
@@ -122,7 +124,7 @@ namespace WindowsFormsApplication1
         {
             DialogResult da;
 
-            da = MessageBox.Show("Do you want to save changes to Note?", "SuperNotepath", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+            da = MessageBox.Show("Do you want to save changes to ?" + fileName + " ?", "SuperNotepath", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
             if (da == DialogResult.Yes)
             {
                 tSBtnSave_Click(sender, e);
@@ -146,12 +148,19 @@ namespace WindowsFormsApplication1
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenFileDialog Open = new OpenFileDialog();
-            Open.Filter = ".doc|*.doc| .txt| *.txt";
-            Open.RestoreDirectory = true;
-            if (Open.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            DialogResult da;
+            if(rTBMain.Modified)
             {
-                rTBMain.LoadFile(Open.FileName, RichTextBoxStreamType.PlainText);
+                if(MessageBox.Show("Do you want to save changes to " + fileName + " ?", "SuperNotepath", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.OK)
+                {
+                    saveToolStripMenuItem_Click(null, null);
+                }
+            }
+           if(oFDOpen.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                fileName = oFDOpen.FileName;
+                rTBMain.Text = System.IO.File.ReadAllText(fileName);
+                this.Text = "Super Notepad - " + fileName;
             }
         }
         private void tSBtnOpen_Click(object sender, EventArgs e)
@@ -166,8 +175,16 @@ namespace WindowsFormsApplication1
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           
-        }
+            if (fileName == "NoName")
+            {
+                saveAsToolStripMenuItem_Click(null, null);
+            }
+            else
+            {
+                System.IO.File.WriteAllText(fileName, rTBMain.Text);
+                this.Text = "Super Notepad - " + fileName;
+            }
+}
 
         private void tSBtnCopy_Click(object sender, EventArgs e)
         {
@@ -191,12 +208,11 @@ namespace WindowsFormsApplication1
 
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SaveFileDialog Save = new SaveFileDialog();
-            Save.RestoreDirectory = true;
-            Save.Filter = ".txt| *.txt| .doc| *.doc";
-            if (Save.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (sFDSave.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                rTBMain.SaveFile(Save.FileName);
+                fileName = sFDSave.FileName;
+                System.IO.File.WriteAllText(fileName, rTBMain.Text);
+                this.Text = "Super Notepad - " + fileName;
             }
         }
 
@@ -212,6 +228,19 @@ namespace WindowsFormsApplication1
             {
                 rTBMain.Font = fDFont.Font;
             }
+        }
+
+        private void rTBMain_TextChanged(object sender, EventArgs e)
+        {
+            if (rTBMain.Modified)
+            {
+                this.Text = "Super Notepad - " + fileName + "*";
+            }
+        }
+
+        private void cutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
