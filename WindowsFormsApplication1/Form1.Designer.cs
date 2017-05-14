@@ -255,14 +255,14 @@
             // 
             this.wordWrapToolStripMenuItem.CheckOnClick = true;
             this.wordWrapToolStripMenuItem.Name = "wordWrapToolStripMenuItem";
-            this.wordWrapToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.wordWrapToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.wordWrapToolStripMenuItem.Text = "Word Wrap";
             this.wordWrapToolStripMenuItem.Click += new System.EventHandler(this.wordWrapToolStripMenuItem_Click);
             // 
             // fontToolStripMenuItem
             // 
             this.fontToolStripMenuItem.Name = "fontToolStripMenuItem";
-            this.fontToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.fontToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.fontToolStripMenuItem.Text = "Fonts...";
             this.fontToolStripMenuItem.Click += new System.EventHandler(this.fontToolStripMenuItem_Click);
             // 
@@ -416,7 +416,7 @@
             this.tSBtnBackgroundColor});
             this.toolStrip2.Location = new System.Drawing.Point(241, 24);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(327, 25);
+            this.toolStrip2.Size = new System.Drawing.Size(358, 25);
             this.toolStrip2.TabIndex = 2;
             this.toolStrip2.Text = "toolStrip2";
             // 
@@ -433,7 +433,6 @@
             this.tSCBSize.Size = new System.Drawing.Size(75, 25);
             this.tSCBSize.Text = "12";
             this.tSCBSize.SelectedIndexChanged += new System.EventHandler(this.tSCBSize_SelectedIndexChanged);
-            this.tSCBSize.Click += new System.EventHandler(this.tSCBSize_Click);
             // 
             // tSBtnBold
             // 
