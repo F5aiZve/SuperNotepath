@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Text;
+using sticky;
 
 namespace WindowsFormsApplication1
 {
@@ -16,6 +17,8 @@ namespace WindowsFormsApplication1
         string fileName = "NoName";
         FontStyle style = FontStyle.Regular;
         Font font;
+        private int NumberofSticky = -1;
+        private List<Sticky> aStickyNote = new List<Sticky>();
         public FrmMain()
         {
             InitializeComponent();
@@ -34,11 +37,6 @@ namespace WindowsFormsApplication1
             this.Location = Properties.Settings.Default.Location;
             this.Height = Properties.Settings.Default.Height;
             this.Width = Properties.Settings.Default.Width;
-        }
-
-        private void tSCBSize_Click(object sender, EventArgs e)
-        {
-            
         }
 
         private void FrmMain_Load(object sender, EventArgs e)
@@ -131,9 +129,7 @@ namespace WindowsFormsApplication1
         private void tSBtnRedo_Click(object sender, EventArgs e)
         {
             redoToolStripMenuItem.PerformClick();
-        }
-
-       
+        }       
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -163,7 +159,6 @@ namespace WindowsFormsApplication1
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult da;
             if(rTBMain.Modified)
             {
                 if(MessageBox.Show("Do you want to save changes to " + fileName + " ?", "SuperNotepath", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.OK)
@@ -213,7 +208,12 @@ namespace WindowsFormsApplication1
 
         private void tSBtnPinNote_Click(object sender, EventArgs e)
         {
-
+            NumberofSticky++;
+            int x = NumberofSticky * 301;
+            int y = NumberofSticky * 300;
+            aStickyNote.Add(new Sticky(x, y));            
+            aStickyNote.Last().Location = new Point(x, y);
+            aStickyNote.Last().getTxtUser = rTBMain.Text;
         }
 
         private void tSBtnCut_Click(object sender, EventArgs e)

@@ -8,21 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WindowsFormsApplication1
+namespace sticky
 {
     public partial class Reminder : Form
     {
         public Reminder()
         {
             InitializeComponent();
-        }
-   
-
-
-
-        private void Reminder_Load(object sender, EventArgs e)
-        {
-            
         }
     }
 }
