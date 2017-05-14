@@ -60,12 +60,6 @@
     <Compile Include="Reminder.Designer.cs">
       <DependentUpon>Reminder.cs</DependentUpon>
     </Compile>
-    <Compile Include="Sticky.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Sticky.Designer.cs">
-      <DependentUpon>Sticky.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -80,9 +74,6 @@
     </Compile>
     <EmbeddedResource Include="Reminder.resx">
       <DependentUpon>Reminder.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Sticky.resx">
-      <DependentUpon>Sticky.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

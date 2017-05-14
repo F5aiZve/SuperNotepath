@@ -50,7 +50,6 @@ namespace WindowsFormsApplication1
                 tSCBSize.Items.Add(i);
             }
             InstalledFontCollection listFont = new InstalledFontCollection();
-            int c=0, j = 0;
             foreach (FontFamily font in listFont.Families)
             {
                 tSCBFont.Items.Add(font.Name);
