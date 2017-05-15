@@ -405,7 +405,6 @@ namespace WindowsFormsApplication1
             int x = (aStickyNote.Count + 1) * 301;
             int y = (aStickyNote.Count + 1) * 300;
             aStickyNote.Add(new Sticky(x, y));
-            aStickyNote.Last().Location = new Point(x, y);
             aStickyNote.Last().getTxtUser = rTBMain.Text;
         }
         //event handler khi form bị đóng, khá quan trọng
