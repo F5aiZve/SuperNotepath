@@ -14,16 +14,17 @@ namespace WindowsFormsApplication1
 {
     public partial class FrmMain : Form
     {
-        string fileName = "NoName";
-        FontStyle style = FontStyle.Regular;
-        Font font;
-        private int NumberofSticky = -1;
-        private List<Sticky> aStickyNote = new List<Sticky>();
+        //khởi tạo các biến toàn cục
+        string fileName = "NoName"; //chuỗi chứa tên file
+        FontStyle style = FontStyle.Regular; //fontstyle của text
+        Font font; //font của text
+        private List<Sticky> aStickyNote = new List<Sticky>(); //list chứa các sticky notes
         public FrmMain()
         {
             InitializeComponent();
         }
 
+        //hai hàm save và load là để lưu cài đặt và load cài đặt về độ cao, chiều dài, vị trí của form
         private void SaveSetting()
         {
             Properties.Settings.Default.Location = this.Location;
@@ -39,43 +40,76 @@ namespace WindowsFormsApplication1
             this.Width = Properties.Settings.Default.Width;
         }
 
+        //hàm xử lý sự kiện khi form được khởi tạo
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            this.Text = "Super Notepad - " + fileName;
-            LoadSetting();
+            //đặt các giá trị mặc định của một số item trên form
+            tSCBFont.Font = DefaultFont;
+            tSCBSize.Font = DefaultFont;
+            tSBtnBold.Checked = false;
+            tSBtnItalic.Checked = false;
+            tSBtnUnderline.Checked = false;
+            rTBMain.BackColor = Color.White;
+            style = FontStyle.Regular;
+            fileName = "NoName";
+            rTBMain.Clear();
+
+            this.Text = "Super Notepad - " + fileName; //tạo tên form là Super Notepad + tên file
+            LoadSetting(); //load thông tin về độ cao, chiều dài, vị trí form
+
+            //dòng for này khởi tạo các giá trị cho toolstripcombobox font size cho việc điều chỉnh size của text
             for (int i = 1; i <= 120; i++)
             {
                 tSCBSize.Items.Add(i);
             }
+
+            //dòng for tiếp theo tạo một list font families cho toolstripcombobox font
             InstalledFontCollection listFont = new InstalledFontCollection();
             foreach (FontFamily font in listFont.Families)
             {
                 tSCBFont.Items.Add(font.Name);
             }
+
         }
 
+        #region các event handler của toolbar format
+        /// <summary>
+        /// xử lý các sự kiện khi đổi font, đổi font size, tô đậm, in nghiêng text, .....
+        /// ps: Thái viết
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tSCBFont_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //tạo font family từ text của toolstripcombo font
             FontFamily fa = new FontFamily(tSCBFont.Text);
+            //tạo font với fontfamily và size đã định
             Font f = new System.Drawing.Font(fa, float.Parse(tSCBSize.Text));
-            if (rTBMain.SelectedText.Length > 0)
-                rTBMain.SelectionFont = f;
+            //thay đổi kiểu font của text hiện tại và sau này
+            rTBMain.SelectionFont = f;
+            //cho focus vào textbox 
+            //(ngưng trường hợp chọn xong thì gõ phím tiếp thì lại gõ vào toolstripcombobox)
+            rTBMain.Focus();
         }
-
+        //hàm tiếp theo tương tự như trên
         private void tSCBSize_SelectedIndexChanged(object sender, EventArgs e)
         {
             FontFamily fa = new FontFamily(tSCBFont.Text);
             Font f = new System.Drawing.Font(fa, float.Parse(tSCBSize.Text));
-            if (rTBMain.SelectedText.Length > 0)
-                rTBMain.SelectionFont = f;
+            rTBMain.SelectionFont = f;
+            rTBMain.Focus();
         }
 
+        //3 hàm tiếp theo là eventhandler của các nút in đậm, in nghiêng, gạch chân
+        //cấu trúc là tương tự nhau
         private void tSBtnBold_Click(object sender, EventArgs e)
         {
-
-                    style = style ^ FontStyle.Bold;
-                    font = new System.Drawing.Font(new FontFamily(tSCBFont.Text), float.Parse(tSCBSize.Text), style);
-                    rTBMain.SelectionFont = font;
+            //cho biến style (biến toàn cục lưu kiểu của text) xor với kiểu in đậm
+            //ý nghĩa là nếu nó đã in đậm rồi thì ngừng in đậm và ngược lại
+            style = style ^ FontStyle.Bold;
+            //hai dòng lệnh dưới cập nhật lại kiểu font cho textbox
+            font = new System.Drawing.Font(new FontFamily(tSCBFont.Text), float.Parse(tSCBSize.Text), style);
+            rTBMain.SelectionFont = font;
         }
 
         private void tSBtnItalic_Click(object sender, EventArgs e)
@@ -94,6 +128,8 @@ namespace WindowsFormsApplication1
             rTBMain.SelectionFont = font;
         }
 
+        //hai event handler này khá đơn giản
+        //hiện color dialog nếu Ok thì đổi màu của text/background
         private void tSBtnTextColor_Click(object sender, EventArgs e)
         {
             if (this.colorDialog1.ShowDialog() == DialogResult.OK)
@@ -110,7 +146,52 @@ namespace WindowsFormsApplication1
                 rTBMain.BackColor = colorDialog1.Color;
             }
         }
+        #endregion
 
+        #region các event handler cho context menustrip (khi người dùng nhấn chuột phải)
+        /// <summary>
+        /// ps: Thái viết
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void undoToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            tSBtnUndo_Click(sender, e);
+        }
+
+        private void redoToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            tSBtnRedo_Click(sender, e);
+        }
+
+        private void cutToolStripMenuItem1_Click_1(object sender, EventArgs e)
+        {
+            tSBtnCut_Click(sender, e);
+        }
+
+        private void copyToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            tSBtnCopy_Click(sender, e);
+        }
+
+        private void pasteToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            tSBtnPaste_Click(sender, e);
+        }
+
+        private void selectAllToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            this.rTBMain.SelectAll();
+        }
+        #endregion
+
+        #region các event handler cho các toolstripmenu item File, Format, Edit, View và About
+        /// <summary>
+        /// PS: chủ yếu là Nhựt viết, Thắng thêm và Thái sửa
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        //4 event handler này gọi hàm undo/redo của textbox
         private void undoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             rTBMain.Undo();
@@ -131,41 +212,48 @@ namespace WindowsFormsApplication1
             redoToolStripMenuItem.PerformClick();
         }       
 
+        //event handler của File->New
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult da;
+            DialogResult da; //biến lưu kết quả ok hay là no
 
+            //hỏi người ta có muốn lưu lại không
             da = MessageBox.Show("Do you want to save changes to ?" + fileName + " ?", "SuperNotepath", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+
+            //nếu yes
             if (da == DialogResult.Yes)
             {
+                //thực thi event handler của nút lưu
                 tSBtnSave_Click(sender, e);
-                rTBMain.Clear();
+                //khởi tạo lại form
+                FrmMain_Load(sender, e);
             }
+
+            //nếu không thì chỉ khởi tạo lại form thôi
             if (da == DialogResult.No)
             {
-                rTBMain.Clear();
-                tSCBFont.Font = DefaultFont;
-                tSCBSize.Font = DefaultFont;
-                tSBtnBold.Checked = false;
-                tSBtnItalic.Checked = false;
-                tSBtnUnderline.Checked = false;
-                rTBMain.BackColor = Color.White;
+                FrmMain_Load(sender, e);
             }
         }
+
+        //event handler của button New
         private void tSBtnNew_Click(object sender, EventArgs e)
         {
             newToolStripMenuItem.PerformClick();
         }
 
+        //event handler của File->Open
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(rTBMain.Modified)
+            if(rTBMain.Modified) //nếu có thay đổi
             {
+                //và đồng ý lưu thì gọi event handler của nút save
                 if(MessageBox.Show("Do you want to save changes to " + fileName + " ?", "SuperNotepath", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.OK)
                 {
                     saveToolStripMenuItem_Click(null, null);
                 }
             }
+           //mở dialog open file và xử lý
            if(oFDOpen.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 fileName = oFDOpen.FileName;
@@ -173,54 +261,52 @@ namespace WindowsFormsApplication1
                 this.Text = "Super Notepad - " + fileName;
             }
         }
+
+        //event handler của button Open
         private void tSBtnOpen_Click(object sender, EventArgs e)
         {
             openToolStripMenuItem.PerformClick();
         }
 
+        //event handler của File->Save
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (fileName == "NoName") //nếu tên nó là NoName (mặc định) thì gọi event handler saveAs
+            {
+                saveAsToolStripMenuItem_Click(null, null);
+            }
+            else //không thì lưu lại
+            {
+                System.IO.File.WriteAllText(fileName, rTBMain.Text);
+                this.Text = "Super Notepad - " + fileName;
+            }
+        }
+
+        //event handler của button Save
         private void tSBtnSave_Click(object sender, EventArgs e)
         {
             saveToolStripMenuItem.PerformClick();
         }
 
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (fileName == "NoName")
-            {
-                saveAsToolStripMenuItem_Click(null, null);
-            }
-            else
-            {
-                System.IO.File.WriteAllText(fileName, rTBMain.Text);
-                this.Text = "Super Notepad - " + fileName;
-            }
-}
-
-        private void tSBtnCopy_Click(object sender, EventArgs e)
-        {
-            copyToolStripMenuItem.PerformClick();
-        }
-
-        private void tSBtnPaste_Click(object sender, EventArgs e)
-        {
-            pasteToolStripMenuItem.PerformClick();
-        }
-
-        private void tSBtnPinNote_Click(object sender, EventArgs e)
-        {
-            NumberofSticky++;
-            int x = NumberofSticky * 301;
-            int y = NumberofSticky * 300;
-            aStickyNote.Add(new Sticky(x, y));            
-            aStickyNote.Last().Location = new Point(x, y);
-            aStickyNote.Last().getTxtUser = rTBMain.Text;
-        }
-
+        //event handler của button Cut
         private void tSBtnCut_Click(object sender, EventArgs e)
         {
             cutToolStripMenuItem.PerformClick();
         }
 
+        //event handler của button Copy
+        private void tSBtnCopy_Click(object sender, EventArgs e)
+        {
+            copyToolStripMenuItem.PerformClick();
+        }
+
+        //event handler của button Paste
+        private void tSBtnPaste_Click(object sender, EventArgs e)
+        {
+            pasteToolStripMenuItem.PerformClick();
+        }
+
+        //event handler của File->Save As
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (sFDSave.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -231,11 +317,13 @@ namespace WindowsFormsApplication1
             }
         }
 
+        //event handler của File->Exit
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
         }
 
+        //event handler của Format->Font
         private void fontToolStripMenuItem_Click(object sender, EventArgs e)
         {
             fDFont.Font = rTBMain.Font;
@@ -245,6 +333,7 @@ namespace WindowsFormsApplication1
             }
         }
 
+        //event handler khi textbox thay đổi
         private void rrTBMain_TextChanged(object sender, EventArgs e)
         {
             if (rTBMain.Modified)
@@ -253,24 +342,10 @@ namespace WindowsFormsApplication1
             }
         }
 
+        //event handler của Edit->Cut
         private void cutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             rTBMain.Cut();
-        }
-
-        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            rTBMain.Copy();
-        }
-
-        private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            rTBMain.Paste();
-        }
-
-        private void selectAllToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            rTBMain.SelectAll();
         }
 
         private void cutToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -278,6 +353,26 @@ namespace WindowsFormsApplication1
             cutToolStripMenuItem.PerformClick();
         }
 
+        //event handler của Edit->Copy
+        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            rTBMain.Copy();
+        }
+
+        //event handler của Edit->Paste
+        private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            rTBMain.Paste();
+        }
+
+        //event handler của Edit->Select All
+        private void selectAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            rTBMain.SelectAll();
+        }
+
+
+        //event handler của Format->WordWrap
         private void wordWrapToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (wordWrapToolStripMenuItem.Checked)
@@ -290,9 +385,39 @@ namespace WindowsFormsApplication1
             }
         }
 
+        //event handler của View->File Toolbar
+        private void fileToolbarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fileToolbarToolStripMenuItem.Checked = !fileToolbarToolStripMenuItem.Checked;
+            toolStrip1.Visible = !toolStrip1.Visible;
+        }
+
+        //event handler của View->Format Toolbar
+        private void formatToolbarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            formatToolbarToolStripMenuItem.Checked = !formatToolbarToolStripMenuItem.Checked;
+            toolStrip2.Visible = !toolStrip2.Visible;
+        }
+        #endregion
+
+        private void tSBtnPinNote_Click(object sender, EventArgs e)
+        {
+            int x = (aStickyNote.Count + 1) * 301;
+            int y = (aStickyNote.Count + 1) * 300;
+            aStickyNote.Add(new Sticky(x, y));
+            aStickyNote.Last().Location = new Point(x, y);
+            aStickyNote.Last().getTxtUser = rTBMain.Text;
+        }
+        //event handler khi form bị đóng, khá quan trọng
         private void FrmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
             SaveSetting();
+            foreach (Sticky a in aStickyNote)
+            {
+            }
         }
+
+
+
     }
 }

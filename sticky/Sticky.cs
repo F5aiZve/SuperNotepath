@@ -84,9 +84,7 @@ namespace sticky
 
         private void Form1_LocationChanged(object sender, EventArgs e)
         {
-            Top = 0;
-            Point set = new Point(Screen.PrimaryScreen.Bounds.Width, y);
-            this.Left = Screen.PrimaryScreen.Bounds.Width - this.Width - x;
+
         }
 
         private void Form1_VisibleChanged(object sender, EventArgs e)
@@ -104,6 +102,11 @@ namespace sticky
         {
             if (this.WindowState == FormWindowState.Minimized)
                 this.WindowState = FormWindowState.Normal;
+        }
+
+        private void Sticky_Load(object sender, EventArgs e)
+        {
+            this.SetDesktopLocation(Screen.PrimaryScreen.Bounds.Width - x, 10);
         }
     }
 }
