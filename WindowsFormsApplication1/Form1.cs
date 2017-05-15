@@ -19,6 +19,7 @@ namespace WindowsFormsApplication1
         FontStyle style = FontStyle.Regular; //fontstyle của text
         Font font; //font của text
         private List<Sticky> aStickyNote = new List<Sticky>(); //list chứa các sticky notes
+        public bool IsShutdownable = false;
         public FrmMain()
         {
             InitializeComponent();
@@ -405,19 +406,16 @@ namespace WindowsFormsApplication1
             int x = (aStickyNote.Count + 1) * 301;
             int y = (aStickyNote.Count + 1) * 300;
             aStickyNote.Add(new Sticky(x, y));
-            aStickyNote.Last().Location = new Point(x, y);
             aStickyNote.Last().getTxtUser = rTBMain.Text;
         }
-        //event handler khi form bị đóng, khá quan trọng
-        private void FrmMain_FormClosed(object sender, FormClosedEventArgs e)
+
+        //event handler khi form chuẩn bị đóng, khá quan trọng
+        private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             SaveSetting();
-            foreach (Sticky a in aStickyNote)
-            {
-            }
+            e.Cancel = true;
+                this.Hide();
         }
-
-
-
+        
     }
 }

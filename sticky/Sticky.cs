@@ -108,5 +108,11 @@ namespace sticky
         {
             this.SetDesktopLocation(Screen.PrimaryScreen.Bounds.Width - x, 10);
         }
+
+        private void Sticky_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (this.ParentForm != null)
+                this.ParentForm.Close();
+        }
     }
 }

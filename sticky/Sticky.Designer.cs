@@ -84,6 +84,7 @@
             this.Text = "MySticky";
             this.TopMost = true;
             this.Deactivate += new System.EventHandler(this.Form1_Deactivate);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Sticky_FormClosing);
             this.Load += new System.EventHandler(this.Sticky_Load);
             this.LocationChanged += new System.EventHandler(this.Form1_LocationChanged);
             this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
