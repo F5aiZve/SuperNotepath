@@ -1,0 +1,10 @@
+D:\Google Drive\Projects\SuperNotepad\SuperNotepath\sticky\bin\Debug\sticky.exe.config
+D:\Google Drive\Projects\SuperNotepad\SuperNotepath\sticky\bin\Debug\sticky.exe
+D:\Google Drive\Projects\SuperNotepad\SuperNotepath\sticky\bin\Debug\sticky.pdb
+D:\Google Drive\Projects\SuperNotepad\SuperNotepath\sticky\obj\Debug\sticky.csprojResolveAssemblyReference.cache
+D:\Google Drive\Projects\SuperNotepad\SuperNotepath\sticky\obj\Debug\sticky.Sticky.resources
+D:\Google Drive\Projects\SuperNotepad\SuperNotepath\sticky\obj\Debug\sticky.Properties.Resources.resources
+D:\Google Drive\Projects\SuperNotepad\SuperNotepath\sticky\obj\Debug\sticky.Reminder.resources
+D:\Google Drive\Projects\SuperNotepad\SuperNotepath\sticky\obj\Debug\sticky.csproj.GenerateResource.Cache
+D:\Google Drive\Projects\SuperNotepad\SuperNotepath\sticky\obj\Debug\sticky.exe
+D:\Google Drive\Projects\SuperNotepad\SuperNotepath\sticky\obj\Debug\sticky.pdb
