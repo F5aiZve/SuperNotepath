@@ -21,6 +21,21 @@ namespace WindowsFormsApplication1
             InitializeComponent();
         }
 
+        private void SaveSetting()
+        {
+            Properties.Settings.Default.Location = this.Location;
+            Properties.Settings.Default.Height = this.Height;
+            Properties.Settings.Default.Width = this.Width;
+            Properties.Settings.Default.Save();
+        }
+
+        private void LoadSetting()
+        {
+            this.Location = Properties.Settings.Default.Location;
+            this.Height = Properties.Settings.Default.Height;
+            this.Width = Properties.Settings.Default.Width;
+        }
+
         private void tSCBSize_Click(object sender, EventArgs e)
         {
             
@@ -29,6 +44,7 @@ namespace WindowsFormsApplication1
         private void FrmMain_Load(object sender, EventArgs e)
         {
             this.Text = "Super Notepad - " + fileName;
+            LoadSetting();
             for (int i = 1; i <= 120; i++)
             {
                 tSCBSize.Items.Add(i);
@@ -188,12 +204,12 @@ namespace WindowsFormsApplication1
 
         private void tSBtnCopy_Click(object sender, EventArgs e)
         {
-
+            copyToolStripMenuItem.PerformClick();
         }
 
         private void tSBtnPaste_Click(object sender, EventArgs e)
         {
-
+            pasteToolStripMenuItem.PerformClick();
         }
 
         private void tSBtnPinNote_Click(object sender, EventArgs e)
@@ -203,7 +219,7 @@ namespace WindowsFormsApplication1
 
         private void tSBtnCut_Click(object sender, EventArgs e)
         {
-
+            cutToolStripMenuItem.PerformClick();
         }
 
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -230,7 +246,7 @@ namespace WindowsFormsApplication1
             }
         }
 
-        private void rTBMain_TextChanged(object sender, EventArgs e)
+        private void rrTBMain_TextChanged(object sender, EventArgs e)
         {
             if (rTBMain.Modified)
             {
@@ -240,7 +256,44 @@ namespace WindowsFormsApplication1
 
         private void cutToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            rTBMain.Cut();
+        }
 
+        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            rTBMain.Copy();
+        }
+
+        private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            rTBMain.Paste();
+        }
+
+        private void selectAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            rTBMain.SelectAll();
+        }
+
+        private void cutToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            cutToolStripMenuItem.PerformClick();
+        }
+
+        private void wordWrapToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (wordWrapToolStripMenuItem.Checked)
+            {
+                rTBMain.WordWrap = true;
+            }
+            else
+            {
+                rTBMain.WordWrap = false;
+            }
+        }
+
+        private void FrmMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            SaveSetting();
         }
     }
 }
