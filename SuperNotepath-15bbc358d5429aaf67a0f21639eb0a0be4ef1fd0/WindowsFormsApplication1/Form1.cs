@@ -19,6 +19,7 @@ namespace WindowsFormsApplication1
         FontStyle style = FontStyle.Regular; //fontstyle của text
         Font font; //font của text
         private List<Sticky> aStickyNote = new List<Sticky>(); //list chứa các sticky notes
+        private bool IsShutdownable = true;
         public FrmMain()
         {
             InitializeComponent();
@@ -402,21 +403,49 @@ namespace WindowsFormsApplication1
 
         private void tSBtnPinNote_Click(object sender, EventArgs e)
         {
-            int x = (aStickyNote.Count + 1) * 301;
-            int y = (aStickyNote.Count + 1) * 300;
+            Sticky temp = new Sticky();
+            int x = (aStickyNote.Count + 1) * temp.Width;
+            int y = (aStickyNote.Count + 1) * temp.Height;
             aStickyNote.Add(new Sticky(x, y));
-            aStickyNote.Last().Location = new Point(x, y);
             aStickyNote.Last().getTxtUser = rTBMain.Text;
+            temp.Dispose();
+            if (timer1.Enabled != true)
+            {
+                timer1.Start();
+            }
         }
         //event handler khi form bị đóng, khá quan trọng
-        private void FrmMain_FormClosed(object sender, FormClosedEventArgs e)
+        private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             SaveSetting();
-            foreach (Sticky a in aStickyNote)
+            if (!IsShutdownable)
             {
+                e.Cancel = true;
+                this.Hide();
+            }
+            else
+            {
+                e.Cancel = false;
             }
         }
 
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (aStickyNote.Count > 0)
+            {
+                for (int i = 0; i < aStickyNote.Count; i++)
+                {
+                    if (aStickyNote[i].IsDisposed == false)
+                    {
+                        IsShutdownable = false;
+                        return;
+                    }
+                }
+                IsShutdownable = true;
+                timer1.Stop();
+                this.Close();
+            }
+        }
 
 
     }
