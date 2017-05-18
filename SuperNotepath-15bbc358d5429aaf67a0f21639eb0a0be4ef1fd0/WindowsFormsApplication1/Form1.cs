@@ -18,8 +18,8 @@ namespace WindowsFormsApplication1
         string fileName = "NoName"; //chuỗi chứa tên file
         FontStyle style = FontStyle.Regular; //fontstyle của text
         Font font; //font của text
-        private List<Sticky> aStickyNote = new List<Sticky>(); //list chứa các sticky notes
-        private bool IsShutdownable = true;
+        public List<Sticky> aStickyNote = new List<Sticky>(); //list chứa các sticky notes
+        private bool IsShutdownable = true; //biến bool cho biến có thể tắt form hay không
         public FrmMain()
         {
             InitializeComponent();
@@ -45,6 +45,7 @@ namespace WindowsFormsApplication1
         private void FrmMain_Load(object sender, EventArgs e)
         {
             //đặt các giá trị mặc định của một số item trên form
+            this.IsAccessible = true;
             tSCBFont.Font = DefaultFont;
             tSCBSize.Font = DefaultFont;
             tSBtnBold.Checked = false;
@@ -71,6 +72,12 @@ namespace WindowsFormsApplication1
                 tSCBFont.Items.Add(font.Name);
             }
 
+            //3 dòng này để thêm 355k từ tiếng anh vào control autocomplete
+            IEnumerable<string> a = System.IO.File.ReadLines("english word.txt");
+            foreach (string alone in a)
+            {
+                autocompleteMenu1.AddItem(alone);
+            }
         }
 
         #region các event handler của toolbar format
@@ -401,51 +408,97 @@ namespace WindowsFormsApplication1
         }
         #endregion
 
+        #region các hàm xử lý và làm việc với sticky notes
+        //hàm xử lý khi nút pin note được nhấn
         private void tSBtnPinNote_Click(object sender, EventArgs e)
         {
-            Sticky temp = new Sticky();
-            int x = (aStickyNote.Count + 1) * temp.Width;
-            int y = (aStickyNote.Count + 1) * temp.Height;
-            aStickyNote.Add(new Sticky(x, y));
-            aStickyNote.Last().getTxtUser = rTBMain.Text;
-            temp.Dispose();
-            if (timer1.Enabled != true)
+            try
             {
-                timer1.Start();
+
+
+                //tạo một sticky tạm thời để lấy độ dài, rộng của sticky
+                Sticky temp = new Sticky();
+                //cập nhật giá trị của hai biến x, y, hai biến này sẽ là quyết định vị trí của sticky trên màn hình
+                int x = (aStickyNote.Count + 1) * temp.Width;
+                int y = (aStickyNote.Count + 1) * temp.Height;
+                //thêm sticky mới vào list
+                aStickyNote.Add(new Sticky(x, y));
+                //copy nội dung từ RichTextBox qua Sticky
+                aStickyNote.Last().getTxtUser = rTBMain.Text;
+                //giải phóng temp Sticky
+                temp.Dispose();
+                //bật timer1
+                if (timer1.Enabled != true)
+                {
+                    timer1.Start();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
             }
         }
         //event handler khi form bị đóng, khá quan trọng
         private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            SaveSetting();
-            if (!IsShutdownable)
+            try
             {
-                e.Cancel = true;
-                this.Hide();
+                SaveSetting();
+                //nếu không được tắt
+                if (!IsShutdownable)
+                {
+                    e.Cancel = true; //hủy event tắt
+                    this.Hide(); //giấu form
+                    this.IsAccessible = false; //đặt IsAccessible là false
+                }
+                else //nếu tắt được
+                {
+                    //thì tắt form
+                    e.Cancel = false;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                e.Cancel = false;
+                MessageBox.Show(ex.ToString());
             }
         }
-
+        //hàm liên tục kiểm tra sự tồn tại của sticky notes
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (aStickyNote.Count > 0)
+            try
             {
-                for (int i = 0; i < aStickyNote.Count; i++)
+                // nếu số lượng stickynote lớn hơn 0
+                if (aStickyNote.Count > 0)
                 {
-                    if (aStickyNote[i].IsDisposed == false)
+                    for (int i = 0; i < aStickyNote.Count; i++)
                     {
-                        IsShutdownable = false;
-                        return;
+                        if (aStickyNote[i].IsDisposed == true) //sticky nào đã tắt
+                        {
+                            aStickyNote.RemoveAt(i); //thì loại khỏi list
+
+                        }
                     }
                 }
-                IsShutdownable = true;
-                timer1.Stop();
-                this.Close();
+                if (aStickyNote.Count == 0) //nếu tắt cả sticky đều bị tắt
+                {
+                    IsShutdownable = true; //thì có thể tắt form
+                    timer1.Stop(); //dừng timer
+                    if (this.IsAccessible == false) //nếu form đã được giấu từ trước
+                        this.Close(); //thì tắt
+                }
+                else //nếu vẫn còn sticky đang chạy
+                {
+                    IsShutdownable = false; //không được tắt form
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
         }
+        #endregion
+
 
 
     }
