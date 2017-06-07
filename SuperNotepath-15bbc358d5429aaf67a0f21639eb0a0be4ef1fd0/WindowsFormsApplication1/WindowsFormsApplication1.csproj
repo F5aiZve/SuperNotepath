@@ -34,7 +34,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -80,10 +83,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AutocompleteMenu\AutocompleteMenu.csproj">
+      <Project>{43CBC9AA-6A8E-463F-83A9-AFF3124AFDB6}</Project>
+      <Name>AutocompleteMenu</Name>
+    </ProjectReference>
     <ProjectReference Include="..\sticky\sticky.csproj">
       <Project>{186ef7ef-799e-422b-85ed-e66ae77df4b4}</Project>
       <Name>sticky</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
