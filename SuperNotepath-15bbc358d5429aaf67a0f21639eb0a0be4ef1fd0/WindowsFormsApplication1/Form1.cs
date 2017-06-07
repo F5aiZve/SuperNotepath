@@ -10,10 +10,12 @@ using System.Windows.Forms;
 using System.Drawing.Text;
 using sticky;
 using Google.Cloud.Speech.V1;
+using SharpUpdate;
+using System.Reflection;
 
 namespace WindowsFormsApplication1
 {
-    public partial class FrmMain : Form
+    public partial class FrmMain : Form, ISharpUpdatable
     {
         #region khởi tạo các biến toàn cục
         string fileName = "NoName"; //chuỗi chứa tên file
@@ -22,9 +24,62 @@ namespace WindowsFormsApplication1
         public List<Sticky> aStickyNote = new List<Sticky>(); //list chứa các sticky notes
         private bool IsShutdownable = true; //biến bool cho biến có thể tắt form hay không
         #endregion
+        #region phần biến liên quan đến chức năng update
+        private SharpUpdater updater;
+
+        public string ApplicationName
+        {
+            get
+            {
+                return "Super Notepad";
+            }
+        }
+
+        public string ApplicationID
+        {
+            get
+            {
+               return "Super Notepad";
+            }
+        }
+
+        public Assembly ApplicationAssembly
+        {
+            get
+            {
+                return Assembly.GetExecutingAssembly();
+            }
+        }
+
+        public Icon ApplicationIcon
+        {
+            get
+            {
+                return this.Icon;
+            }
+        }
+
+        public Uri UpdateXmlLocation
+        {
+            get
+            {
+               return new Uri("https://rawgit.com/Effecerit/SuperNotepath/master/update.xml");
+            }
+        }
+
+        public Form Context
+        {
+            get
+            {
+                return this;
+            }
+        }
+        #endregion
         public FrmMain()
         {
             InitializeComponent();
+            this.lblversion.Text = this.ApplicationAssembly.GetName().Version.ToString();
+            updater = new SharpUpdater(this);
         }
 
         //hai hàm save và load là để lưu cài đặt và load cài đặt về độ cao, chiều dài, vị trí của form
@@ -503,5 +558,10 @@ namespace WindowsFormsApplication1
 
 
         #endregion
+
+        private void checkForUpdateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            updater.DoUpdate();
+        }
     }
 }

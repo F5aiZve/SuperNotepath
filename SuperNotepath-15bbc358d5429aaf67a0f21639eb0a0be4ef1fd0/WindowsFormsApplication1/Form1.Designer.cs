@@ -77,7 +77,6 @@
             this.fDFont = new System.Windows.Forms.FontDialog();
             this.sFDSave = new System.Windows.Forms.SaveFileDialog();
             this.oFDOpen = new System.Windows.Forms.OpenFileDialog();
-            this.rTBMain = new System.Windows.Forms.RichTextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.undoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -86,8 +85,12 @@
             this.pasteToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.selectAllToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.autocompleteMenu1 = new AutocompleteMenuNS.AutocompleteMenu();
             this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
+            this.lblversion = new System.Windows.Forms.Label();
+            this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkForUpdateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rTBMain = new System.Windows.Forms.RichTextBox();
+            this.autocompleteMenu1 = new AutocompleteMenuNS.AutocompleteMenu();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
@@ -102,7 +105,8 @@
             this.editToolStripMenuItem,
             this.formatToolStripMenuItem,
             this.viewToolStripMenuItem,
-            this.aboutToolStripMenuItem});
+            this.aboutToolStripMenuItem,
+            this.updateToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(777, 24);
@@ -514,20 +518,6 @@
             // 
             this.oFDOpen.Filter = "Text Document|*.txt";
             // 
-            // rTBMain
-            // 
-            this.autocompleteMenu1.SetAutocompleteMenu(this.rTBMain, this.autocompleteMenu1);
-            this.rTBMain.ContextMenuStrip = this.contextMenuStrip1;
-            this.rTBMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rTBMain.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rTBMain.Location = new System.Drawing.Point(0, 76);
-            this.rTBMain.Name = "rTBMain";
-            this.rTBMain.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedBoth;
-            this.rTBMain.Size = new System.Drawing.Size(777, 326);
-            this.rTBMain.TabIndex = 3;
-            this.rTBMain.Text = "This is a test string";
-            this.rTBMain.WordWrap = false;
-            // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -586,6 +576,52 @@
             // 
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // axWindowsMediaPlayer1
+            // 
+            this.axWindowsMediaPlayer1.Enabled = true;
+            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(393, 24);
+            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
+            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
+            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(75, 23);
+            this.axWindowsMediaPlayer1.TabIndex = 6;
+            // 
+            // lblversion
+            // 
+            this.lblversion.AutoSize = true;
+            this.lblversion.Location = new System.Drawing.Point(301, 9);
+            this.lblversion.Name = "lblversion";
+            this.lblversion.Size = new System.Drawing.Size(0, 13);
+            this.lblversion.TabIndex = 7;
+            // 
+            // updateToolStripMenuItem
+            // 
+            this.updateToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.checkForUpdateToolStripMenuItem});
+            this.updateToolStripMenuItem.Name = "updateToolStripMenuItem";
+            this.updateToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
+            this.updateToolStripMenuItem.Text = "Update";
+            // 
+            // checkForUpdateToolStripMenuItem
+            // 
+            this.checkForUpdateToolStripMenuItem.Name = "checkForUpdateToolStripMenuItem";
+            this.checkForUpdateToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.checkForUpdateToolStripMenuItem.Text = "Check for update";
+            this.checkForUpdateToolStripMenuItem.Click += new System.EventHandler(this.checkForUpdateToolStripMenuItem_Click);
+            // 
+            // rTBMain
+            // 
+            this.autocompleteMenu1.SetAutocompleteMenu(this.rTBMain, this.autocompleteMenu1);
+            this.rTBMain.ContextMenuStrip = this.contextMenuStrip1;
+            this.rTBMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rTBMain.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rTBMain.Location = new System.Drawing.Point(0, 76);
+            this.rTBMain.Name = "rTBMain";
+            this.rTBMain.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedBoth;
+            this.rTBMain.Size = new System.Drawing.Size(777, 326);
+            this.rTBMain.TabIndex = 3;
+            this.rTBMain.Text = "This is a test string";
+            this.rTBMain.WordWrap = false;
             // 
             // autocompleteMenu1
             // 
@@ -3522,15 +3558,6 @@
         "acrotrophoneu"};
             this.autocompleteMenu1.TargetControlWrapper = null;
             // 
-            // axWindowsMediaPlayer1
-            // 
-            this.axWindowsMediaPlayer1.Enabled = true;
-            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(393, 24);
-            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
-            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
-            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(75, 23);
-            this.axWindowsMediaPlayer1.TabIndex = 6;
-            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3538,6 +3565,7 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(777, 402);
             this.ContextMenuStrip = this.contextMenuStrip1;
+            this.Controls.Add(this.lblversion);
             this.Controls.Add(this.rTBMain);
             this.Controls.Add(this.toolStrip2);
             this.Controls.Add(this.toolStrip1);
@@ -3622,6 +3650,9 @@
         private System.Windows.Forms.Timer timer1;
         private AutocompleteMenuNS.AutocompleteMenu autocompleteMenu1;
         private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
+        private System.Windows.Forms.Label lblversion;
+        private System.Windows.Forms.ToolStripMenuItem updateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem checkForUpdateToolStripMenuItem;
     }
 }
 
