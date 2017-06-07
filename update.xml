@@ -1,1 +1,11 @@
-
+<?xml version="1.0"?>
+<sharpUpdate>
+  <update appID="TestApp">
+    <version>2.0.0.0</version>
+    <url>http://www....</url>
+    <fileName>TestApp2.exe</fileName>
+    <md5>asdpfjasofjasopjaop</md5>
+    <description>Test Update</description>
+    <launchArgs></launchArgs>
+  </update>
+</sharpUpdate>
