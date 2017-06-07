@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <sharpUpdate>
-  <update appID="TestApp">
+  <update appId="Super Notepad">
     <version>2.0.0.0</version>
-    <url>http://www....</url>
-    <fileName>TestApp2.exe</fileName>
+    <url>https://cdn.rawgit.com/Effecerit/SuperNotepath/b79b403d/WindowsFormsApplication1.exe</url>
+    <fileName>WindowsFormsApplication1.exe</fileName>
     <md5>asdpfjasofjasopjaop</md5>
     <description>Test Update</description>
     <launchArgs></launchArgs>
