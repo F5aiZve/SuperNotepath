@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sticky", "sticky\sticky.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutocompleteMenu", "AutocompleteMenu\AutocompleteMenu.csproj", "{43CBC9AA-6A8E-463F-83A9-AFF3124AFDB6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpUpdate", "SharpUpdate\SharpUpdate.csproj", "{811C1D69-764F-4335-8363-B93A1D106268}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{43CBC9AA-6A8E-463F-83A9-AFF3124AFDB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43CBC9AA-6A8E-463F-83A9-AFF3124AFDB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43CBC9AA-6A8E-463F-83A9-AFF3124AFDB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{811C1D69-764F-4335-8363-B93A1D106268}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{811C1D69-764F-4335-8363-B93A1D106268}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{811C1D69-764F-4335-8363-B93A1D106268}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{811C1D69-764F-4335-8363-B93A1D106268}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
