@@ -55,6 +55,8 @@
             this.fileToolbarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.formatToolbarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkForUpdateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tSBtnNew = new System.Windows.Forms.ToolStripButton();
             this.tSBtnOpen = new System.Windows.Forms.ToolStripButton();
@@ -87,8 +89,6 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             this.lblversion = new System.Windows.Forms.Label();
-            this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.checkForUpdateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rTBMain = new System.Windows.Forms.RichTextBox();
             this.autocompleteMenu1 = new AutocompleteMenuNS.AutocompleteMenu();
             this.menuStrip1.SuspendLayout();
@@ -315,6 +315,22 @@
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // updateToolStripMenuItem
+            // 
+            this.updateToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.checkForUpdateToolStripMenuItem});
+            this.updateToolStripMenuItem.Name = "updateToolStripMenuItem";
+            this.updateToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
+            this.updateToolStripMenuItem.Text = "Update";
+            // 
+            // checkForUpdateToolStripMenuItem
+            // 
+            this.checkForUpdateToolStripMenuItem.Name = "checkForUpdateToolStripMenuItem";
+            this.checkForUpdateToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.checkForUpdateToolStripMenuItem.Text = "Check for update";
+            this.checkForUpdateToolStripMenuItem.Click += new System.EventHandler(this.checkForUpdateToolStripMenuItem_Click);
             // 
             // toolStrip1
             // 
@@ -593,21 +609,6 @@
             this.lblversion.Name = "lblversion";
             this.lblversion.Size = new System.Drawing.Size(0, 13);
             this.lblversion.TabIndex = 7;
-            // 
-            // updateToolStripMenuItem
-            // 
-            this.updateToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.checkForUpdateToolStripMenuItem});
-            this.updateToolStripMenuItem.Name = "updateToolStripMenuItem";
-            this.updateToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
-            this.updateToolStripMenuItem.Text = "Update";
-            // 
-            // checkForUpdateToolStripMenuItem
-            // 
-            this.checkForUpdateToolStripMenuItem.Name = "checkForUpdateToolStripMenuItem";
-            this.checkForUpdateToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
-            this.checkForUpdateToolStripMenuItem.Text = "Check for update";
-            this.checkForUpdateToolStripMenuItem.Click += new System.EventHandler(this.checkForUpdateToolStripMenuItem_Click);
             // 
             // rTBMain
             // 

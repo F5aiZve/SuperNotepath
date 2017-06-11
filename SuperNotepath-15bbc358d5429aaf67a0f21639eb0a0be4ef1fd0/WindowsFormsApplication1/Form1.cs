@@ -563,5 +563,11 @@ namespace WindowsFormsApplication1
         {
             updater.DoUpdate();
         }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            About about = new About();
+            about.Show();
+        }
     }
 }
