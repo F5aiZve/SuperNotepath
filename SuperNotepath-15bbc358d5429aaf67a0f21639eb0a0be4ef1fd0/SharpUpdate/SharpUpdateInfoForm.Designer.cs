@@ -38,7 +38,7 @@
             // 
             // pictureBox
             // 
-            this.pictureBox.Image = global::SharpUpdate.Properties.Resources.update;
+            this.pictureBox.Image = global::SharpUpdate.Properties.Resources.supernotepad;
             this.pictureBox.Location = new System.Drawing.Point(12, 12);
             this.pictureBox.Name = "pictureBox";
             this.pictureBox.Size = new System.Drawing.Size(80, 80);
