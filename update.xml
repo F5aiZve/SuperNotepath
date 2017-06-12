@@ -3,8 +3,8 @@
 	<update appID="Super Notepad">   
 		<version>2.0.0.0</version>  
 		<url>https://rawgit.com/Effecerit/SuperNotepath/master/WindowsFormsApplication1.exe</url>
-		<fileName>WindowsFormsApplication2.exe</fileName> 
-		<md5>3FC7D50DF39614872E7651C600DBE020</md5> 
+		<fileName>WindowsFormsApplication1.exe</fileName> 
+		<md5>9278AD1A21B5829CF31D22EC30D0F160</md5> 
     <description>Updated a lots of things</description>  
 		<launchArgs></launchArgs>
   </update>
