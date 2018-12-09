@@ -63,7 +63,7 @@ namespace WindowsFormsApplication1
         {
             get
             {
-               return new Uri("https://rawgit.com/Effecerit/SuperNotepath/master/update.xml");
+               return new Uri("https://cdn.jsdelivr.net/gh/Effecerit/SuperNotepath@master/update.xml");
             }
         }
 
